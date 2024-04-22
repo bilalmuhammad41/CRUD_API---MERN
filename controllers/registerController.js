@@ -1,5 +1,8 @@
 const express = require('express')
 const fsPromise = require('fs').promises
+const bcrypt = require('bcrypt')
+const path = require('path')
+
 const userDB = {
   users: require('../model/users.json'),
   setUsers: (data)=> this.users = data
@@ -12,10 +15,10 @@ const handleNewUser = async (req, res)=>{
 
   const duplicate = userDB.users.find((user) => user.username === username)
 
-  if (duplicate) res.sendStatus(409)
+  if (duplicate) return res.sendStatus(409)
 
   try {
-    const hashedPwd = await bcrypt.has(pwd, 10)
+    const hashedPwd = await bcrypt.hash(pwd, 10)
     userDB.users = [...userDB.users, {username, password: pwd}]
     
     await fsPromise.writeFile(path.join(__dirname, '..', 'model', 'users.json'), JSON.stringify(userDB.users))

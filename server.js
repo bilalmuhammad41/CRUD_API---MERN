@@ -13,10 +13,13 @@ app.use(express.urlencoded({extended: false}))
 app.use(cors(corsOptions))
 app.use(express.json())
 
+// serve static files
 app.use(express.static(path.join(__dirname, '/public')))
-app.use('/employees', require('./routes/api/employees'))
 
+// routes
 app.use('/', require('./routes/root'))
+app.use('/employees', require('./routes/api/employees'))
+app.use('/register', require('./routes/register'))
 
 app.all('*', (req,res)=>{
   res.status(404);
