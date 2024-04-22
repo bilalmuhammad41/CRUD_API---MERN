@@ -1,4 +1,1 @@
-[
-  { "username": "mbilal", "password": "bilal@123" },
-  { "username": "christophernoland", "password": "donal@123" }
-]
+[{"username":"mbilal","password":"bilal@123"},{"username":"christophernoland","password":"donal@123"},{"username":"johndoe","password":"$2b$10$637oZQBkSHXKmYbxAkN/tueCuvH78nv3U/d6.2E2CbtL9h3zcuqWK"},{"username":"mzaki","password":"$2b$10$ffg7FNxFvJazrzSMdj1ZmeQHM/0AHxAUIB5TstEOZek9iRb.uwsju"}]

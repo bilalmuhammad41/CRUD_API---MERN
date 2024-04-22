@@ -1,4 +1,3 @@
-const express = require('express')
 const fsPromise = require('fs').promises
 const bcrypt = require('bcrypt')
 const path = require('path')
@@ -19,7 +18,7 @@ const handleNewUser = async (req, res)=>{
 
   try {
     const hashedPwd = await bcrypt.hash(pwd, 10)
-    userDB.users = [...userDB.users, {username, password: pwd}]
+    userDB.users = [...userDB.users, {username, password: hashedPwd}]
     
     await fsPromise.writeFile(path.join(__dirname, '..', 'model', 'users.json'), JSON.stringify(userDB.users))
     console.log(userDB)
