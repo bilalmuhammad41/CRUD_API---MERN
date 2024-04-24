@@ -6,12 +6,13 @@ const corsOptions = require('./config/corsOptions')
 const {logger} = require('./middleware/logEvents')
 const errorHandler = require ('./middleware/errorHandler')
 const verifyJWT = require('./middleware/verifyJWT')
+const credentials = require('./middleware/credentials')
 const cookieParser = require('cookie-parser')
 const PORT = process.env.PORT || 3500
 
 // app.use(logger)
 app.use(express.urlencoded({extended: false}))
-
+app.use(credentials)
 app.use(cors(corsOptions))
 app.use(express.json())
 

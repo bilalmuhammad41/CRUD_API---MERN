@@ -22,7 +22,7 @@ const logoutHandler = async (req, res)=>{
   userDB.users = [...otherUsers, currentUser]
   await fsPromise.writeFile(path.join(__dirname, '..', 'model', 'users.json'), JSON.stringify(userDB.users))
   
-  res.clearCookie('jwt', {httpOnly: true})
+  res.clearCookie('jwt', {httpOnly: true, sameSite: 'None', secure: true,})
   return res.sendStatus(204)
 }
 
