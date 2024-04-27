@@ -1,20 +1,17 @@
 const jwt = require('jsonwebtoken')
-const dotenv = require('dotenv')
-const userDB = {
-  users: require('../model/users.json'),
-  setUsers : (data)=> this.users = data
-}
+const User = require('../model/user.model')
 
-const handleRefreshToken = (req,res)=>{
+
+const handleRefreshToken = async (req,res)=>{
   const cookies = req.cookies
 
   if (!cookies?.jwt) return res.sendStatus(401)
   console.log(cookies.jwt)
 
   const refreshToken = cookies.jwt
-  const foundUser = userDB.users.find((user)=> user.refreshToken === refreshToken)
-  console.log(userDB.users)
+  const foundUser = await User.findOne({refreshToken}).exec()
   if(!foundUser) return res.sendStatus(403)
+  console.log(foundUser)
 
   jwt.verify(
     refreshToken,

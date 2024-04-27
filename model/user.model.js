@@ -13,11 +13,11 @@ const userSchema = new mongoose.Schema({
     
     Editor: {
       type: Number,
-      default: 1001
+      
     },
     Admin: {
       type: Number,
-      default: 1000
+      
     }
   },
   password: {
