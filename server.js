@@ -9,6 +9,11 @@ const verifyJWT = require('./middleware/verifyJWT')
 const credentials = require('./middleware/credentials')
 const cookieParser = require('cookie-parser')
 const PORT = process.env.PORT || 3500
+const mongoose = require('mongoose')
+const connectDB = require('./config/dbConn')
+
+//Connect to DB
+connectDB()
 
 // app.use(logger)
 app.use(express.urlencoded({extended: false}))
@@ -47,4 +52,7 @@ app.all('*', (req,res)=>{
 })
 
 app.use(errorHandler)
-app.listen(PORT, ()=> console.log(`Server running on port ${PORT}`))
+
+mongoose.connection.once('open', () => {
+  app.listen(PORT, ()=> console.log(`Server running on port ${PORT}`))
+})

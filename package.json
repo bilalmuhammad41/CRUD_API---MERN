@@ -32,6 +32,8 @@
     "jsonwebtoken": "^9.0.2",
     "lru-cache": "^6.0.0",
     "minimatch": "^3.1.2",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.3.2",
     "ms": "^2.1.2",
     "nopt": "^1.0.10",
     "normalize-path": "^3.0.0",
